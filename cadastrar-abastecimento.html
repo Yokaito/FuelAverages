@@ -9,21 +9,24 @@
   <meta name="description" content="">
   <meta name="author" content="Irineu">
 
-  <title>Cadastrar Veículo - SuppySystem</title>
+  <title>Cadastrar Abastecimento - SuppySystem</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js" integrity="sha256-U0YLVHo5+B3q9VEC4BJqRngDIRFCjrhAIZooLdqVOcs=" crossorigin="anonymous"></script>
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.maskedinput-1.1.4.pack.js"/></script>
+
   <script type="text/javascript">
-       $(document).ready(function($){
-       $("#inputVeiculoPlaca").mask("aaa-9999");
-  });
-</script>
+    $(function($){
+      $("#inputAbastecimentoPrecoLitro").maskMoney({symbol:'R$ ', 
+          showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
+    })
+    </script>
 
 </head>
 
@@ -56,13 +59,13 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="abastecimentos.html">
           <i class="fas fa-fw fa-bolt"></i>
           <span>Abastecimentos</span></a>
       </li>
 
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
           <i class="fas fa-fw fa-car"></i>
           <span>Veículos</span>
@@ -184,24 +187,24 @@
 
         <div class="container-fluid">
 <form name="form" data-toggle="validator" role="form" method="POST" action="add_automovel.php">    <div class="form-group">
-      <label for="inputVeiculoPlaca">Placa</label>
-      <input type="text" class="form-control" id="inputVeiculoPlaca" aria-describedby="emailHelp" placeholder="Digite a placa do carro">
+      <label for="inputAbastecimentoData">Data</label>
+      <input type="date" class="form-control" id="inputAbastecimentoData" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-      <label for="inputVeiculoMarca">Marca</label>
-      <input type="text" class="form-control" id="inputVeiculoMarca" aria-describedby="emailHelp" placeholder="Digite a marca do carro">
+      <label for="inputAbastecimentoHora">Hora</label>
+      <input type="time" class="form-control" id="inputAbastecimentoHora" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-      <label for="inputVeiculoModelo">Modelo</label>
-      <input type="text" class="form-control" id="inputVeiculoModelo" aria-describedby="emailHelp" placeholder="Digite o modelo do carro">
+      <label for="inputAbastecimentoPrecoLitro">Preço por Litro</label>
+      <input type="text" class="form-control" id="inputAbastecimentoPrecoLitro" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
-      <label for="inputVeiculoAno">Ano</label>
-      <input type="number" class="form-control" id="inputVeiculoAno" aria-describedby="emailHelp" placeholder="Digite o ano do carro">
+      <label for="inputAbastecimentoLitrosAbastecidos">Litros Abastecidos</label>
+      <input type="number" class="form-control" id="inputAbastecimentoLitrosAbastecidos" aria-describedby="emailHelp" placeholder="Quantidade de litros abastecidos">
     </div>
     <div class="form-group">
-      <label for="inputVeiculoPosto">Posto</label>
-      <input type="text" class="form-control" id="inputVeiculoPosto" aria-describedby="emailHelp" placeholder="Digite o posto do carro">
+      <label for="inputAbastecimentoKMAtual">KM atual</label>
+      <input type="number" class="form-control" id="inputAbastecimentoKMAtual" aria-describedby="emailHelp" placeholder="Quilometragem atual">
     </div>
     <div class="form-group"> 
                       <label for="sel1">Tipo Combustível</label>
