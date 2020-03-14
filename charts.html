@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Administração - SuppySystem</title>
+  <title>Relatórios - SuppySystem</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,9 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="css/custom.css"> -->
+
+  <!-- Custom charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
 
@@ -44,7 +46,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Relatórios</span></a>
       </li>
 
       <!-- Divider -->
@@ -77,7 +79,7 @@
       <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Dashboard</span>
+          <span>Relatórios</span>
         </a>
 
       </li>
@@ -180,7 +182,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Relatórios</h1>
            
           </div>
 
@@ -256,10 +258,13 @@
             
           </div>
 
+          <!-- charts -->
+          
+
 
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white" id="footer">
+      <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Criado na base do ódio e do <i class="fas fa-coffee"></i>. </br> SuppySystem© 2020</span>
@@ -314,7 +319,6 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
-
 </body>
 
 </html>
