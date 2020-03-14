@@ -1,3 +1,7 @@
+<?php
+  include 'database/crud.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -190,48 +194,56 @@
         </nav>
         <!-- End of Topbar -->
 
-      <div id="content-wrapper">
+        <div id="content-wrapper">
 
-        <div class="container-fluid">
-<form name="form" data-toggle="validator" role="form" method="POST" action="db/add_automovel.php">    <div class="form-group">
-      <label for="inputVeiculoPlaca">Placa</label>
-      <input type="text" name="placa" class="form-control" id="inputVeiculoPlaca" aria-describedby="emailHelp" placeholder="Digite a placa do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoMarca">Marca</label>
-      <input type="text" name="marca" class="form-control" id="inputVeiculoMarca" aria-describedby="emailHelp" placeholder="Digite a marca do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoModelo">Modelo</label>
-      <input type="text" name="modelo" class="form-control" id="inputVeiculoModelo" aria-describedby="emailHelp" placeholder="Digite o modelo do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoAno">Ano</label>
-      <input type="number" name="ano" class="form-control" id="inputVeiculoAno" aria-describedby="emailHelp" placeholder="Digite o ano do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoPosto">Posto</label>
-      <input type="text" name="posto" class="form-control" id="inputVeiculoPosto" aria-describedby="emailHelp" placeholder="Digite o posto do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoProprietario">Proprietário</label>
-      <input type="text" name="proprietario" class="form-control" id="inputVeiculoProprietario" aria-describedby="emailHelp" placeholder="Digite o nome do proprietário">
-    </div>
-    <div class="form-group"> 
-                      <label for="sel1">Tipo Combustível</label>
-                      <select class="form-control" name="tipoCombustivel">
-                        <option name="Gasolina" value="Gasolina">Gasolina</option>
-                        <option name="Diesel" value="Diesel">Diesel</option>
-                        <option name="Álcool" value="Álcool">Álcool</option>
-                      </select>
-                    </div>
-   
-      
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-  </form>
-
-
-
+          <div class="container-fluid">
+  <form name="form" data-toggle="validator" role="form" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">    <div class="form-group">
+        <label for="inputVeiculoPlaca">Placa</label>
+        <input type="text" class="form-control" id="inputVeiculoPlaca" name="inputVeiculoPlaca" aria-describedby="emailHelp" placeholder="Digite a placa do carro">
+      </div>
+      <div class="form-group">
+        <label for="inputVeiculoMarca">Marca</label>
+        <input type="text" class="form-control" id="inputVeiculoMarca" name="inputVeiculoMarca" aria-describedby="emailHelp" placeholder="Digite a marca do carro">
+      </div>
+      <div class="form-group">
+        <label for="inputVeiculoModelo">Modelo</label>
+        <input type="text" class="form-control" id="inputVeiculoModelo" name="inputVeiculoModelo" aria-describedby="emailHelp" placeholder="Digite o modelo do carro">
+      </div>
+      <div class="form-group">
+        <label for="inputVeiculoAno">Ano</label>
+        <input type="number" class="form-control" id="inputVeiculoAno" name="inputVeiculoAno" aria-describedby="emailHelp" placeholder="Digite o ano do carro">
+      </div>
+      <div class="form-group">
+        <label for="inputVeiculoProprietario">Proprietario</label>
+        <input type="text" class="form-control" id="inputVeiculoProprietario"  name="inputVeiculoProprietario" aria-describedby="emailHelp" placeholder="Digite o proprietario do carro">
+      </div>
+      <div class="form-group"> 
+                        <label for="sel1">Tipo Combustível</label>
+                        <select class="form-control" name="tipoCombustivel">
+                          <option name="Gasolina" value="Gasolina">Gasolina</option>
+                          <option name="Diesel" value="Diesel">Diesel</option>
+                          <option name="Alcool" value="Álcool">Álcool</option>
+                        </select>
+                      </div>
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+  
+    <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+              $placa = $_POST['inputVeiculoPlaca'];
+              $marca = $_POST['inputVeiculoMarca'];
+              $modelo = $_POST['inputVeiculoModelo'];
+              $ano = $_POST['inputVeiculoAno'];
+              $combustivel = $_POST['tipoCombustivel'];
+              $proprietario = $_POST['inputVeiculoProprietario'];
+              
+              if($placa == NULL || $marca == NULL || $modelo == NULL || $ano == NULL || $combustivel == NULL || $proprietario == NULL){
+                  echo 'Preencha todos os campos.';
+              }else{
+                  insertVeiculo($placa,$marca,$modelo,$ano,$combustivel,$proprietario);
+              }
+        }
+    ?>
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
