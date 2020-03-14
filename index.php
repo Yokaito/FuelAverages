@@ -70,7 +70,7 @@
         <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="cadastrar-veiculo.php">Criar</a>
-            <a class="collapse-item" href="veiculos.html">Listar</a>
+            <a class="collapse-item" href="veiculos.php">Listar</a>
           </div>
         </div>
       </li>
