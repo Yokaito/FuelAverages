@@ -50,9 +50,16 @@
       <hr class="sidebar-divider">
 
       <li class="nav-item">
-        <a class="nav-link" href="abastecimentos.html">
-          <i class="fas fa-fw fa-bolt"></i>
-          <span>Abastecimentos</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
+          <i class="fas fa-fw fa-car"></i>
+          <span>Abastecimentos</span>
+        </a>
+        <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="cadastrar-abastecimento.html">Criar</a>
+            <a class="collapse-item" href="abastecimentos.html">Listar</a>
+          </div>
+        </div>
       </li>
 
       <li class="nav-item">

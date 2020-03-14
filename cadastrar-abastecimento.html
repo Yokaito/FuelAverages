@@ -59,10 +59,17 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="abastecimentos.html">
-          <i class="fas fa-fw fa-bolt"></i>
-          <span>Abastecimentos</span></a>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
+          <i class="fas fa-fw fa-car"></i>
+          <span>Abastecimentos</span>
+        </a>
+        <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="cadastrar-abastecimento.html">Criar</a>
+            <a class="collapse-item" href="abastecimentos.html">Listar</a>
+          </div>
+        </div>
       </li>
 
       <li class="nav-item">
@@ -186,26 +193,27 @@
       <div id="content-wrapper">
 
         <div class="container-fluid">
-<form name="form" data-toggle="validator" role="form" method="POST" action="add_automovel.php">    <div class="form-group">
+<form name="form" data-toggle="validator" role="form" method="POST" action="db/add_abastecimento.php">    <div class="form-group">
       <label for="inputAbastecimentoData">Data</label>
-      <input type="date" class="form-control" id="inputAbastecimentoData" aria-describedby="emailHelp">
+      <input type="date" name="data" class="form-control" id="inputAbastecimentoData" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoHora">Hora</label>
-      <input type="time" class="form-control" id="inputAbastecimentoHora" aria-describedby="emailHelp">
+      <input type="time" name="hora" class="form-control" id="inputAbastecimentoHora" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoPrecoLitro">Preço por Litro</label>
-      <input type="text" class="form-control" id="inputAbastecimentoPrecoLitro" aria-describedby="emailHelp">
+      <input type="text" name="preco_litro" class="form-control" id="inputAbastecimentoPrecoLitro" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoLitrosAbastecidos">Litros Abastecidos</label>
-      <input type="number" class="form-control" id="inputAbastecimentoLitrosAbastecidos" aria-describedby="emailHelp" placeholder="Quantidade de litros abastecidos">
+      <input type="number" name="litros_abastecidos" class="form-control" id="inputAbastecimentoLitrosAbastecidos" aria-describedby="emailHelp" placeholder="Quantidade de litros abastecidos">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoKMAtual">KM atual</label>
-      <input type="number" class="form-control" id="inputAbastecimentoKMAtual" aria-describedby="emailHelp" placeholder="Quilometragem atual">
+      <input type="number" name="km_atual" class="form-control" id="inputAbastecimentoKMAtual" aria-describedby="emailHelp" placeholder="Quilometragem atual">
     </div>
+    
     <div class="form-group"> 
                       <label for="sel1">Tipo Combustível</label>
                       <select class="form-control" name="tipoCombustivel">
@@ -214,6 +222,22 @@
                         <option name="Álcool" value="Álcool">Álcool</option>
                       </select>
                     </div>
+                    <div class="form-group">
+                      <label for="inputAbastecimentoNomePosto">Nome do Posto</label>
+                      <input type="number" name="nome_posto" class="form-control" id="inputAbastecimentoNomePosto" aria-describedby="emailHelp" placeholder="Nome do posto">
+                    </div>
+                    <label for="nome">Carro:</label>  
+                    <div class="form-row">
+                      <div class="form-group col-md-2">
+                      <select 
+                        name="fsetor" class="form-control">
+                        
+                          <option  value="" disabled selected>Selecione um carro</option>
+                      
+                        </select><br>
+                        </div>
+                      </div>
+
     <button type="submit" class="btn btn-primary">Cadastrar</button>
   </form>
 
