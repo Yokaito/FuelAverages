@@ -1,3 +1,7 @@
+<?php
+  include 'database/crud.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -14,6 +18,7 @@
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="recursos/css/estilo.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
 
   <!-- Custom styles for this template-->
@@ -36,7 +41,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
@@ -48,7 +53,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -56,11 +61,20 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
+ 
       <li class="nav-item">
-        <a class="nav-link" href="abastecimentos.html">
-          <i class="fas fa-fw fa-bolt"></i>
-          <span>Abastecimentos</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
+          <i class="fas fa-fw fa-car"></i>
+          <span>Abastecimentos</span>
+        </a>
+        <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="cadastrar-abastecimento.php">Criar</a>
+            <a class="collapse-item" href="abastecimentos.php">Listar</a>
+          </div>
+        </div>
       </li>
+
 
       <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
@@ -69,8 +83,8 @@
         </a>
         <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="cadastrar-veiculo.html">Criar</a>
-            <a class="collapse-item" href="veiculos.html">Listar</a>
+            <a class="collapse-item" href="cadastrar-veiculo.php">Criar</a>
+            <a class="collapse-item" href="veiculos.php">Listar</a>
           </div>
         </div>
       </li>
@@ -81,7 +95,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="charts.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Relatórios</span></a>
       </li>
@@ -180,42 +194,56 @@
         </nav>
         <!-- End of Topbar -->
 
-      <div id="content-wrapper">
+        <div id="content-wrapper">
 
-        <div class="container-fluid">
-<form name="form" data-toggle="validator" role="form" method="POST" action="add_automovel.php">    <div class="form-group">
-      <label for="inputVeiculoPlaca">Placa</label>
-      <input type="text" class="form-control" id="inputVeiculoPlaca" aria-describedby="emailHelp" placeholder="Digite a placa do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoMarca">Marca</label>
-      <input type="text" class="form-control" id="inputVeiculoMarca" aria-describedby="emailHelp" placeholder="Digite a marca do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoModelo">Modelo</label>
-      <input type="text" class="form-control" id="inputVeiculoModelo" aria-describedby="emailHelp" placeholder="Digite o modelo do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoAno">Ano</label>
-      <input type="number" class="form-control" id="inputVeiculoAno" aria-describedby="emailHelp" placeholder="Digite o ano do carro">
-    </div>
-    <div class="form-group">
-      <label for="inputVeiculoPosto">Posto</label>
-      <input type="text" class="form-control" id="inputVeiculoPosto" aria-describedby="emailHelp" placeholder="Digite o posto do carro">
-    </div>
-    <div class="form-group"> 
-                      <label for="sel1">Tipo Combustível</label>
-                      <select class="form-control" name="tipoCombustivel">
-                        <option name="Gasolina" value="Gasolina">Gasolina</option>
-                        <option name="Diesel" value="Diesel">Diesel</option>
-                        <option name="Álcool" value="Álcool">Álcool</option>
-                      </select>
-                    </div>
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-  </form>
-
-
-
+          <div class="container-fluid">
+  <form name="form" data-toggle="validator" role="form" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">    <div class="form-group">
+        <label for="inputVeiculoPlaca">Placa</label>
+        <input type="text" class="form-control" id="inputVeiculoPlaca" name="inputVeiculoPlaca" aria-describedby="emailHelp" placeholder="Digite a placa do carro">
+      </div>
+      <div class="form-group">
+        <label for="inputVeiculoMarca">Marca</label>
+        <input type="text" class="form-control" id="inputVeiculoMarca" name="inputVeiculoMarca" aria-describedby="emailHelp" placeholder="Digite a marca do carro">
+      </div>
+      <div class="form-group">
+        <label for="inputVeiculoModelo">Modelo</label>
+        <input type="text" class="form-control" id="inputVeiculoModelo" name="inputVeiculoModelo" aria-describedby="emailHelp" placeholder="Digite o modelo do carro">
+      </div>
+      <div class="form-group">
+        <label for="inputVeiculoAno">Ano</label>
+        <input type="number" class="form-control" id="inputVeiculoAno" name="inputVeiculoAno" aria-describedby="emailHelp" placeholder="Digite o ano do carro">
+      </div>
+      <div class="form-group">
+        <label for="inputVeiculoProprietario">Proprietario</label>
+        <input type="text" class="form-control" id="inputVeiculoProprietario"  name="inputVeiculoProprietario" aria-describedby="emailHelp" placeholder="Digite o proprietario do carro">
+      </div>
+      <div class="form-group"> 
+                        <label for="sel1">Tipo Combustível</label>
+                        <select class="form-control" name="tipoCombustivel">
+                          <option name="Gasolina" value="Gasolina">Gasolina</option>
+                          <option name="Diesel" value="Diesel">Diesel</option>
+                          <option name="Alcool" value="Álcool">Álcool</option>
+                        </select>
+                      </div>
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+  
+    <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+              $placa = $_POST['inputVeiculoPlaca'];
+              $marca = $_POST['inputVeiculoMarca'];
+              $modelo = $_POST['inputVeiculoModelo'];
+              $ano = $_POST['inputVeiculoAno'];
+              $combustivel = $_POST['tipoCombustivel'];
+              $proprietario = $_POST['inputVeiculoProprietario'];
+              
+              if($placa == NULL || $marca == NULL || $modelo == NULL || $ano == NULL || $combustivel == NULL || $proprietario == NULL){
+                  echo 'Preencha todos os campos.';
+              }else{
+                  insertVeiculo($placa,$marca,$modelo,$ano,$combustivel,$proprietario);
+              }
+        }
+    ?>
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

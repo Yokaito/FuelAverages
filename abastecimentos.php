@@ -1,3 +1,7 @@
+<?php
+  include 'database/conn.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,7 +34,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
@@ -42,7 +46,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -51,7 +55,7 @@
       <hr class="sidebar-divider">
 
       <li class="nav-item active">
-        <a class="nav-link" href="abastecimentos.html">
+        <a class="nav-link" href="abastecimentos.php">
           <i class="fas fa-fw fa-bolt"></i>
           <span>Abastecimentos</span></a>
       </li>
@@ -63,8 +67,8 @@
         </a>
         <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="cadastrar-veiculo.html">Criar</a>
-            <a class="collapse-item" href="veiculos.html">Listar</a>
+            <a class="collapse-item" href="cadastrar-veiculo.php">Criar</a>
+            <a class="collapse-item" href="veiculos.php">Listar</a>
           </div>
         </div>
       </li>
@@ -75,7 +79,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="charts.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Relatórios</span></a>
       </li>
@@ -199,37 +203,29 @@
                       <th>Ações</th>
                     </tr>
                   </thead>
+                  <?php
+                      $sql = "select * from abastecimento;";
+          
+                      $result = $conn->query($sql);
+          
+                      if($result->num_rows > 0){
+                          while($row = $result->fetch_assoc()){
+                  ?>
                   <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>09/03/2020</td>
-                      <td>11:30</td>
-                      <td>Diesel</td>
-                      <td>R$ 4,20</td>
-                      <td>40 litros</td>
-                      <td>120</td>
+                      <td><?php echo $row['id_veiculo'];?></td>
+                      <td><?php echo $row['data'];?></td>
+                      <td><?php echo $row['hora'];?></td>
+                      <td><?php echo $row['tipo_combustivel'];?></td>
+                      <td><?php echo $row['preco_litro'];?></td>
+                      <td><?php echo $row['quantidade_litros_abastecidos'];?></td>
+                      <td><?php echo $row['km_atual'];?></td>
                       <td><center><a href="#"><i class="fas fa-times" style="color:red"></i></a> <a href="#"><i class="far fa-edit"  style="color:black"></i>  <a href="#"><i class="fas fa-eye"  style="color:green"></i></a></center></td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>11/03/2020</td>
-                      <td>11:30</td>
-                      <td>Gasolina</td>
-                      <td>R$ 4,50</td>
-                      <td>10 litros</td>
-                      <td>60</td>
-                      <td><center><a href="#"><i class="fas fa-times" style="color:red"></i></a> <a href="#"><i class="far fa-edit"  style="color:black"></i>  <a href="#"><i class="fas fa-eye"  style="color:green"></i></a></center></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>10/03/2020</td>
-                      <td>12:30</td>
-                      <td>Diesel</td>
-                      <td>R$ 4,20</td>
-                      <td>40 litros</td>
-                      <td>120</td>
-                      <td><center><a href="#"><i class="fas fa-times" style="color:red"></i></a> <a href="#"><i class="far fa-edit"  style="color:black"></i>  <a href="#"><i class="fas fa-eye"  style="color:green"></i></a></center></td>
-                    </tr>  
+                    <?php
+	                         }
+	                    }
+	                 ?> 
                   </tbody>
                 </table>
               </div>

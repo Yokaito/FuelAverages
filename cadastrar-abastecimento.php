@@ -1,3 +1,8 @@
+<?php
+  include 'database/crud.php';
+  include 'database/conn.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,7 +29,7 @@
   <script type="text/javascript">
     $(function($){
       $("#inputAbastecimentoPrecoLitro").maskMoney({symbol:'R$ ', 
-          showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
+          showSymbol:true, thousands:'.', decimal:'.', symbolStay: true});
     })
     </script>
 
@@ -39,7 +44,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
@@ -51,7 +56,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -59,10 +64,17 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="abastecimentos.html">
-          <i class="fas fa-fw fa-bolt"></i>
-          <span>Abastecimentos</span></a>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
+          <i class="fas fa-fw fa-car"></i>
+          <span>Abastecimentos</span>
+        </a>
+        <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="cadastrar-abastecimento.php">Criar</a>
+            <a class="collapse-item" href="abastecimentos.php">Listar</a>
+          </div>
+        </div>
       </li>
 
       <li class="nav-item">
@@ -72,8 +84,8 @@
         </a>
         <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="cadastrar-veiculo.html">Criar</a>
-            <a class="collapse-item" href="veiculos.html">Listar</a>
+            <a class="collapse-item" href="cadastrar-veiculo.php">Criar</a>
+            <a class="collapse-item" href="veiculos.php">Listar</a>
           </div>
         </div>
       </li>
@@ -84,7 +96,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="charts.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Relatórios</span></a>
       </li>
@@ -186,26 +198,27 @@
       <div id="content-wrapper">
 
         <div class="container-fluid">
-<form name="form" data-toggle="validator" role="form" method="POST" action="add_automovel.php">    <div class="form-group">
+<form name="form" data-toggle="validator" role="form" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">    <div class="form-group">
       <label for="inputAbastecimentoData">Data</label>
-      <input type="date" class="form-control" id="inputAbastecimentoData" aria-describedby="emailHelp">
+      <input type="date" name="data" class="form-control" id="inputAbastecimentoData" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoHora">Hora</label>
-      <input type="time" class="form-control" id="inputAbastecimentoHora" aria-describedby="emailHelp">
+      <input type="time" name="hora" class="form-control" id="inputAbastecimentoHora" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoPrecoLitro">Preço por Litro</label>
-      <input type="text" class="form-control" id="inputAbastecimentoPrecoLitro" aria-describedby="emailHelp">
+      <input type="text" name="preco_litro" class="form-control" id="inputAbastecimentoPrecoLitro" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoLitrosAbastecidos">Litros Abastecidos</label>
-      <input type="number" class="form-control" id="inputAbastecimentoLitrosAbastecidos" aria-describedby="emailHelp" placeholder="Quantidade de litros abastecidos">
+      <input type="number" name="litros_abastecidos" class="form-control" id="inputAbastecimentoLitrosAbastecidos" aria-describedby="emailHelp" placeholder="Quantidade de litros abastecidos">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoKMAtual">KM atual</label>
-      <input type="number" class="form-control" id="inputAbastecimentoKMAtual" aria-describedby="emailHelp" placeholder="Quilometragem atual">
+      <input type="number" name="km_atual" class="form-control" id="inputAbastecimentoKMAtual" aria-describedby="emailHelp" placeholder="Quilometragem atual">
     </div>
+    
     <div class="form-group"> 
                       <label for="sel1">Tipo Combustível</label>
                       <select class="form-control" name="tipoCombustivel">
@@ -214,10 +227,56 @@
                         <option name="Álcool" value="Álcool">Álcool</option>
                       </select>
                     </div>
+                    <div class="form-group">
+                      <label for="inputAbastecimentoNomePosto">Nome do Posto</label>
+                      <input type="text" name="nome_posto" class="form-control" id="inputAbastecimentoNomePosto" aria-describedby="emailHelp" placeholder="Nome do posto">
+                    </div>
+                    <label for="nome">Selecione o carro (placa):</label>  
+                    <div class="form-row">
+                      <div class="form-group col-md-2">
+            
+                      <select name="fsetor" class="form-control">
+                      
+                      <?php
+                         $sql = "select * from veiculo;";
+
+                         $result = $conn->query($sql);
+             
+                         if($result->num_rows > 0){
+                             while($row = $result->fetch_assoc()){
+                      ?>
+                                  <option value="<?php echo $row['id_veiculo']; ?>"><?php echo $row['placa']; ?></option> 
+                      <?php
+                             }
+                          }
+                      ?>        
+                      
+                      </select><br>
+                        </div>
+                      </div>
+
     <button type="submit" class="btn btn-primary">Cadastrar</button>
   </form>
+  <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $id_veiculo = $_POST["fsetor"];
+        $data = $_POST["data"];
+        $hora = $_POST["hora"];
+        $tipo_combustivel = $_POST["tipoCombustivel"]; 
+        $preco_litro = $_POST["preco_litro"];
+        $litros_abastecidos = $_POST["litros_abastecidos"];
+        $km_atual = $_POST["km_atual"];
+        $nome_posto = $_POST["nome_posto"];
 
+        if($id_veiculo == NULL || $data == NULL || $hora == NULL || $tipo_combustivel == NULL || $preco_litro == NULL || $litros_abastecidos == NULL || $km_atual == NULL || $nome_posto == NULL){
+            echo 'Preencha todos os campos.';
+        }else{
+            insertAbastecimento($id_veiculo,$data,$hora,$tipo_combustivel,$preco_litro,$litros_abastecidos,$km_atual,$nome_posto);
+        }
+      
+    }
 
+  ?>
 
 
       <!-- Footer -->

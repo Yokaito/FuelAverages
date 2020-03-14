@@ -1,3 +1,7 @@
+<?php
+  include 'database/conn.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,7 +34,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           
         </div>
@@ -42,7 +46,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -64,7 +68,7 @@
         <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="cadastrar-veiculo.html">Criar</a>
-            <a class="collapse-item" href="veiculos.html">Listar</a>
+            <a class="collapse-item" href="veiculos.php">Listar</a>
           </div>
         </div>
       </li>
@@ -198,34 +202,28 @@
                       <th>Ações</th>
                     </tr>
                   </thead>
+                  <?php
+                      $sql = "select * from veiculo;";
+          
+                      $result = $conn->query($sql);
+          
+                      if($result->num_rows > 0){
+                          while($row = $result->fetch_assoc()){
+                  ?>
                   <tbody>
                     <tr>
-                      <td>1</td>
-                      <td>6666-ABC</td>
-                      <td>BMW</td>
-                      <td>X1</td>
-                      <td>2020</td>
-                      <td>Gasolina</td>
+                      <td><?php echo $row['id_veiculo'];?></td>
+                      <td><?php echo $row['placa'];?></td>
+                      <td><?php echo $row['marca'];?></td>
+                      <td><?php echo $row['modelo'];?></td>
+                      <td><?php echo $row['ano'];?></td>
+                      <td><?php echo $row['tipo_combustivel'];?></td>
                       <td><center><a href="#"><i class="fas fa-times" style="color:red"></i></a> <a href="#"><i class="far fa-edit"  style="color:black"></i>  <a href="#"><i class="fas fa-bolt"  style="color:green"></i></a></center></td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>6666-ABC</td>
-                      <td>BMW</td>
-                      <td>X6</td>
-                      <td>2019</td>
-                      <td>Gasolina</td>
-                      <td><center><a href="#"><i class="fas fa-times" style="color:red"></i></a> <a href="#"><i class="far fa-edit"  style="color:black"></i>  <a href="#"><i class="fas fa-bolt"  style="color:green"></i></a></center></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>6666-ABC</td>
-                      <td>Porsche</td>
-                      <td>Cayman</td>
-                      <td>2015</td>
-                      <td>Gasolina</td>
-                      <td><center><a href="#"><i class="fas fa-times" style="color:red"></i></a> <a href="#"><i class="far fa-edit"  style="color:black"></i>  <a href="#"><i class="fas fa-bolt"  style="color:green"></i></a></center></td>
-                    </tr>  
+                    <?php
+	                         }
+	                    }
+	                 ?> 
                   </tbody>
                 </table>
               </div>
