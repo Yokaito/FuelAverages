@@ -56,7 +56,7 @@
         </a>
         <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="cadastrar-abastecimento.html">Criar</a>
+            <a class="collapse-item" href="cadastrar-abastecimento.php">Criar</a>
             <a class="collapse-item" href="abastecimentos.html">Listar</a>
           </div>
         </div>
