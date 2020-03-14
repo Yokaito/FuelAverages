@@ -79,7 +79,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="charts.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Relatórios</span></a>
       </li>
