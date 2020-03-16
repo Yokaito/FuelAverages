@@ -198,30 +198,31 @@
       <div id="content-wrapper">
 
         <div class="container-fluid">
-<form name="form" data-toggle="validator" role="form" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">    <div class="form-group">
+<form name="form" data-toggle="validator" role="form" method="POST" action="database/crud.php">    <div class="form-group">
+<input type="hidden" name="id" value= "<?php echo $id;?>">  
       <label for="inputAbastecimentoData">Data</label>
-      <input type="date" name="data" class="form-control" id="inputAbastecimentoData" aria-describedby="emailHelp">
+      <input type="date" name="inputAbastecimentoData" class="form-control" id="inputAbastecimentoData" value= "<?php echo $data;?>" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoHora">Hora</label>
-      <input type="time" name="hora" class="form-control" id="inputAbastecimentoHora" aria-describedby="emailHelp">
+      <input type="time" name="inputAbastecimentoHora" class="form-control" id="inputAbastecimentoHora" value= "<?php echo $hora;?>" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoPrecoLitro">Preço por Litro</label>
-      <input type="text" name="preco_litro" class="form-control" id="inputAbastecimentoPrecoLitro" aria-describedby="emailHelp">
+      <input type="text" name="inputAbastecimentoPrecoLitro" class="form-control" id="inputAbastecimentoPrecoLitro" value= "<?php echo $preco_litro;?>" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoLitrosAbastecidos">Litros Abastecidos</label>
-      <input type="number" name="litros_abastecidos" class="form-control" id="inputAbastecimentoLitrosAbastecidos" aria-describedby="emailHelp" placeholder="Quantidade de litros abastecidos">
+      <input type="number" name="inputAbastecimentoLitrosAbastecidos" class="form-control" id="inputAbastecimentoLitrosAbastecidos" value= "<?php echo $litros_abastecidos;?>"  aria-describedby="emailHelp" placeholder="Quantidade de litros abastecidos">
     </div>
     <div class="form-group">
       <label for="inputAbastecimentoKMAtual">KM atual</label>
-      <input type="number" name="km_atual" class="form-control" id="inputAbastecimentoKMAtual" aria-describedby="emailHelp" placeholder="Quilometragem atual">
+      <input type="number" name="inputAbastecimentoKMAtual" class="form-control" id="inputAbastecimentoKMAtual" value= "<?php echo $km_atual;?>" aria-describedby="emailHelp" placeholder="Quilometragem atual">
     </div>
     
     <div class="form-group"> 
                       <label for="sel1">Tipo Combustível</label>
-                      <select class="form-control" name="tipoCombustivel">
+                      <select class="form-control" name="tipoCombustivel"  value= "<?php echo $tipo_combustivel;?>">
                         <option name="Gasolina" value="Gasolina">Gasolina</option>
                         <option name="Diesel" value="Diesel">Diesel</option>
                         <option name="Álcool" value="Álcool">Álcool</option>
@@ -229,7 +230,7 @@
                     </div>
                     <div class="form-group">
                       <label for="inputAbastecimentoNomePosto">Nome do Posto</label>
-                      <input type="text" name="nome_posto" class="form-control" id="inputAbastecimentoNomePosto" aria-describedby="emailHelp" placeholder="Nome do posto">
+                      <input type="text" name="nome_posto" class="form-control" id="inputAbastecimentoNomePosto" value= "<?php echo $nome_posto;?>" aria-describedby="emailHelp" placeholder="Nome do posto">
                     </div>
                     <label for="nome">Selecione o carro (placa):</label>  
                     <div class="form-row">
@@ -254,30 +255,13 @@
                       </select><br>
                         </div>
                       </div>
-
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                      <?php if($atualizar == true) :  ?>
+                 <button type="submit" name="atualizarabastecimento" class="btn btn-primary">Atualizar</button>
+                   <?php else:  ?>
+                 <button type="submit" name="salvarabastecimento" class="btn btn-primary">Cadastrar</button>   
+                   <?php endif;  ?>
+    
   </form>
-  <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $id_veiculo = $_POST["fsetor"];
-        $data = $_POST["data"];
-        $hora = $_POST["hora"];
-        $tipo_combustivel = $_POST["tipoCombustivel"]; 
-        $preco_litro = $_POST["preco_litro"];
-        $litros_abastecidos = $_POST["litros_abastecidos"];
-        $km_atual = $_POST["km_atual"];
-        $nome_posto = $_POST["nome_posto"];
-
-        if($id_veiculo == NULL || $data == NULL || $hora == NULL || $tipo_combustivel == NULL || $preco_litro == NULL || $litros_abastecidos == NULL || $km_atual == NULL || $nome_posto == NULL){
-            echo 'Preencha todos os campos.';
-        }else{
-            insertAbastecimento($id_veiculo,$data,$hora,$tipo_combustivel,$preco_litro,$litros_abastecidos,$km_atual,$nome_posto);
-        }
-      
-    }
-
-  ?>
-
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

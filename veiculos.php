@@ -55,7 +55,7 @@
       <hr class="sidebar-divider">
 
       <li class="nav-item">
-        <a class="nav-link" href="abastecimentos.html">
+        <a class="nav-link" href="abastecimentos.php">
           <i class="fas fa-fw fa-bolt"></i>
           <span>Abastecimentos</span></a>
       </li>
@@ -67,7 +67,7 @@
         </a>
         <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="cadastrar-veiculo.html">Criar</a>
+            <a class="collapse-item" href="cadastrar-veiculo.php">Criar</a>
             <a class="collapse-item" href="veiculos.php">Listar</a>
           </div>
         </div>
@@ -79,7 +79,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Relatórios</span></a>
       </li>
@@ -199,6 +199,7 @@
                       <th>Modelo</th>
                       <th>Ano</th>
                       <th>Tipo Combustível</th>
+                      <th>Proprietario</th>
                       <th>Ações</th>
                     </tr>
                   </thead>
@@ -218,7 +219,12 @@
                       <td><?php echo $row['modelo'];?></td>
                       <td><?php echo $row['ano'];?></td>
                       <td><?php echo $row['tipo_combustivel'];?></td>
-                      <td><center><a href="#"><i class="fas fa-times" style="color:red"></i></a> <a href="#"><i class="far fa-edit"  style="color:black"></i>  <a href="#"><i class="fas fa-bolt"  style="color:green"></i></a></center></td>
+                      <td><?php echo $row['proprietario'];?></td>
+                      <td><center
+                      ><a href="database/crud.php?deletarveiculo=<?php echo $row['id_veiculo'];?>"><i class="fas fa-times" style="color:red"></i></a>
+                       <a href="cadastrar-veiculo.php?editarveiculo=<?php echo $row['id_veiculo'];?>"><i class="far fa-edit"  style="color:black"></i>  
+                       <a href="#"><i class="fas fa-bolt"  style="color:green"></i></a>
+                       </center></td>
                     </tr>
                     <?php
 	                         }
