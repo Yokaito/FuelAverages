@@ -1,5 +1,6 @@
 <?php
   include 'database/crud.php';
+  require_once ('database/crud.php');
 ?>
 
 <!DOCTYPE html>
@@ -197,54 +198,42 @@
         <div id="content-wrapper">
 
           <div class="container-fluid">
-  <form name="form" data-toggle="validator" role="form" method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">    <div class="form-group">
+  <form name="form" data-toggle="validator" role="form" method="POST" action="database/crud.php">    <div class="form-group">
+       <input type="hidden" name="id" value= "<?php echo $id;?>">
         <label for="inputVeiculoPlaca">Placa</label>
-        <input type="text" class="form-control" id="inputVeiculoPlaca" name="inputVeiculoPlaca" aria-describedby="emailHelp" placeholder="Digite a placa do carro">
+        <input type="text" class="form-control" id="inputVeiculoPlaca" name="inputVeiculoPlaca" aria-describedby="emailHelp" placeholder="Digite a placa do carro"  value= "<?php echo $placa;?>">
       </div>
       <div class="form-group">
         <label for="inputVeiculoMarca">Marca</label>
-        <input type="text" class="form-control" id="inputVeiculoMarca" name="inputVeiculoMarca" aria-describedby="emailHelp" placeholder="Digite a marca do carro">
+        <input type="text" class="form-control" id="inputVeiculoMarca" name="inputVeiculoMarca" aria-describedby="emailHelp" placeholder="Digite a marca do carro" value= "<?php echo $marca;?>">
       </div>
       <div class="form-group">
         <label for="inputVeiculoModelo">Modelo</label>
-        <input type="text" class="form-control" id="inputVeiculoModelo" name="inputVeiculoModelo" aria-describedby="emailHelp" placeholder="Digite o modelo do carro">
+        <input type="text" class="form-control" id="inputVeiculoModelo" name="inputVeiculoModelo"  aria-describedby="emailHelp" placeholder="Digite o modelo do carro" value= "<?php echo $modelo;?>">
       </div>
       <div class="form-group">
         <label for="inputVeiculoAno">Ano</label>
-        <input type="number" class="form-control" id="inputVeiculoAno" name="inputVeiculoAno" aria-describedby="emailHelp" placeholder="Digite o ano do carro">
+        <input type="number" class="form-control" id="inputVeiculoAno" name="inputVeiculoAno"  aria-describedby="emailHelp" placeholder="Digite o ano do carro" value= "<?php echo $ano;?>">
       </div>
       <div class="form-group">
         <label for="inputVeiculoProprietario">Proprietario</label>
-        <input type="text" class="form-control" id="inputVeiculoProprietario"  name="inputVeiculoProprietario" aria-describedby="emailHelp" placeholder="Digite o proprietario do carro">
+        <input type="text" class="form-control" id="inputVeiculoProprietario"  name="inputVeiculoProprietario"  value= "<?php echo $proprietario;?>"  aria-describedby="emailHelp" placeholder="Digite o proprietario do carro">
       </div>
       <div class="form-group"> 
-                        <label for="sel1">Tipo Combustível</label>
-                        <select class="form-control" name="tipoCombustivel">
+                        <label for="tipoCombustivel" >Tipo Combustível</label>
+                        <select class="form-control" name="tipoCombustivel"id="tipoCombustivel" value= "<?php echo $combustivel;?>">
                           <option name="Gasolina" value="Gasolina">Gasolina</option>
                           <option name="Diesel" value="Diesel">Diesel</option>
                           <option name="Alcool" value="Álcool">Álcool</option>
                         </select>
                       </div>
-      <button type="submit" class="btn btn-primary">Cadastrar</button>
+                      <?php if($atualizar == true) :  ?>
+                 <button type="submit" name="atualizarveiculo" class="btn btn-primary">Atualizar</button>
+                   <?php else:  ?>
+                 <button type="submit" name="salvarveiculo" class="btn btn-primary">Cadastrar</button>   
+                   <?php endif;  ?>
     </form>
   
-    <?php
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
-              $placa = $_POST['inputVeiculoPlaca'];
-              $marca = $_POST['inputVeiculoMarca'];
-              $modelo = $_POST['inputVeiculoModelo'];
-              $ano = $_POST['inputVeiculoAno'];
-              $combustivel = $_POST['tipoCombustivel'];
-              $proprietario = $_POST['inputVeiculoProprietario'];
-              
-              if($placa == NULL || $marca == NULL || $modelo == NULL || $ano == NULL || $combustivel == NULL || $proprietario == NULL){
-                  echo 'Preencha todos os campos.';
-              }else{
-                  insertVeiculo($placa,$marca,$modelo,$ano,$combustivel,$proprietario);
-              }
-        }
-    ?>
-
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">

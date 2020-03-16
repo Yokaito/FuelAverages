@@ -58,6 +58,11 @@
         <a class="nav-link" href="abastecimentos.php">
           <i class="fas fa-fw fa-bolt"></i>
           <span>Abastecimentos</span></a>
+          <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="cadastrar-abastecimento.php">Criar</a>
+            <a class="collapse-item" href="abastecimentos.php">Listar</a>
+          </div>
       </li>
 
       <li class="nav-item">
@@ -79,7 +84,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.php">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Relatórios</span></a>
       </li>
@@ -193,13 +198,14 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>Veículo</th>
                       <th>Data</th>
                       <th>Hora</th>
                       <th>Combustível</th>
                       <th>Preço/L</th>
                       <th>Quantidade</th>
                       <th>KM Atual</th>
+                      <th>Posto</th>
                       <th>Ações</th>
                     </tr>
                   </thead>
@@ -220,7 +226,12 @@
                       <td><?php echo $row['preco_litro'];?></td>
                       <td><?php echo $row['quantidade_litros_abastecidos'];?></td>
                       <td><?php echo $row['km_atual'];?></td>
-                      <td><center><a href="#"><i class="fas fa-times" style="color:red"></i></a> <a href="#"><i class="far fa-edit"  style="color:black"></i>  <a href="#"><i class="fas fa-eye"  style="color:green"></i></a></center></td>
+                      <td><?php echo $row['nome_posto'];?></td>
+                      <td><center>
+                      <a href="database/crud.php?deletarabastecimento=<?php echo $row['id_abastecimento'];?>"><i class="fas fa-times" style="color:red"></i></a>
+                       <a href="cadastrar-abastecimento.php?editarabastecimento=<?php echo $row['id_abastecimento'];?>"><i class="far fa-edit"  style="color:black"></i>  
+                        <a href="#"><i class="fas fa-eye"  style="color:green"></i></a>
+                        </center></td>
                     </tr>
                     <?php
 	                         }
