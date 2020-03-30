@@ -1,3 +1,7 @@
+<?php
+  include 'database/crud.php';
+  include 'database/conn.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -50,11 +54,11 @@
       <hr class="sidebar-divider">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
-          <i class="fas fa-fw fa-car"></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAbastecimentos" aria-expanded="true" aria-controls="collapseAbastecimentos">
+          <i class="fas fa-fw fa-bolt"></i>
           <span>Abastecimentos</span>
         </a>
-        <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseAbastecimentos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="cadastrar-abastecimento.php">Criar</a>
             <a class="collapse-item" href="abastecimentos.php">Listar</a>
@@ -81,10 +85,18 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorios" aria-expanded="true" aria-controls="collapseRelatorios">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Relatórios</span></a>
+          <span>Relatórios</span>
+        </a>
+        <div id="collapseRelatorios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="relatorio.php">Gerar</a>
+          </div>
+        </div>
       </li>
+
+    
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -109,8 +121,7 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-
-          
+        
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -181,7 +192,30 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+     
+                      
+                      <?php
+                         $sql = "SELECT * FROM veiculo;";
+                         $sql1 = "SELECT * FROM abastecimento;";
+                         $executa_query = mysqli_query($conn, $sql);
+                         $conta_linhas = mysqli_num_rows($executa_query);
+                         $executa_query1 = mysqli_query($conn, $sql1);
+                         $conta_linhas1 = mysqli_num_rows($executa_query1);
+                        
+                        
+                         $result = $conn->query($sql);
 
+                         if($result->num_rows > 0){
+                             while($row = $result->fetch_assoc()){ 
+                      ?>
+                                
+                      <?php 
+                             }
+                          }
+                      ?>        
+                    
+                       
+          
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -198,7 +232,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Veículos cadastrados</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $conta_linhas; ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-car fa-2x text-gray-300"></i>
@@ -207,7 +241,7 @@
                 </div>
               </div>
             </div>
-
+              
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
@@ -215,7 +249,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Abastecimentos</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $conta_linhas1; ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-bolt fa-2x text-gray-300"></i>
@@ -225,37 +259,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Média KM/L</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-chart-bar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Admins</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-user fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
 
             
           </div>
