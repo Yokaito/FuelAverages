@@ -47,6 +47,7 @@ $nome_posto = '';
         header("location:../abastecimentos.php");
     }
 
+    
 //deletar
     if(isset($_GET['deletarveiculo'])){
         $id = $_GET['deletarveiculo'];
@@ -120,20 +121,17 @@ $nome_posto = '';
 
     if(isset($_POST['atualizarabastecimento'])){
         $id = $_POST['id'];
-        
-        $id_veiculo = $_POST['fsetor'];
         $data = $_POST['inputAbastecimentoData'];
         $hora = $_POST['inputAbastecimentoHora'];
-        $tipo_combustivel = $_POST['tipoCombustivel'];
         $preco_litro = $_POST['inputAbastecimentoPrecoLitro'];
         $litros_abastecidos = $_POST['inputAbastecimentoLitrosAbastecidos'];
         $km_atual = $_POST['inputAbastecimentoKMAtual'];
+        $tipo_combustivel = $_POST['tipoCombustivel'];
         $nome_posto = $_POST['nome_posto'];
-       
-
+        
         $mysqly = ("UPDATE abastecimento 
-        SET id_veiculo = '$id_veiculo', data ='$data', hora='$hora', tipo_combustivel='$tipo_combustivel', preco_litro='$preco_litro',
-         quantidade_litros_abastecidos ='$litros_abastecidos', km_atual ='$km_atual', nome_posto = '$nome_posto'
+        SET data = '$data', hora ='$hora', tipo_combustivel='$tipo_combustivel', preco_litro='$preco_litro'
+        ,tipo_combustivel='$combustivel', quantidade_litros_abastecidos='$litros_abastecidos', km_atual='$km_atual', nome_posto='$nome_posto'
          WHERE id_abastecimento =$id") or die($mysqli->error());
         if ($conn->query($mysqly) === TRUE) {
             echo "Alterado com sucesso.";
@@ -141,8 +139,8 @@ $nome_posto = '';
             echo "Error: " . $mysqly . "<br>" . $conn->error;
         }
         header("location:../abastecimentos.php");
-        var_dump ($tipo_combustivel);
-    } 
-  
+    
+    
+    }
 
 ?>

@@ -54,15 +54,17 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="abastecimentos.php">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAbastecimentos" aria-expanded="true" aria-controls="collapseAbastecimentos">
           <i class="fas fa-fw fa-bolt"></i>
-          <span>Abastecimentos</span></a>
-          <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <span>Abastecimentos</span>
+        </a>
+        <div id="collapseAbastecimentos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="cadastrar-abastecimento.php">Criar</a>
             <a class="collapse-item" href="abastecimentos.php">Listar</a>
           </div>
+        </div>
       </li>
 
       <li class="nav-item">
@@ -84,9 +86,15 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="index.php">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorios" aria-expanded="true" aria-controls="collapseRelatorios">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Relatórios</span></a>
+          <span>Relatórios</span>
+        </a>
+        <div id="collapseRelatorios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="relatorio.php">Gerar</a>
+          </div>
+        </div>
       </li>
 
       <!-- Divider -->

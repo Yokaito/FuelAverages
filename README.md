@@ -1,3 +1,1 @@
 # FuelAverages
-
-## Teste

@@ -64,11 +64,11 @@
 
  
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
-          <i class="fas fa-fw fa-car"></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAbastecimentos" aria-expanded="true" aria-controls="collapseAbastecimentos">
+          <i class="fas fa-fw fa-bolt"></i>
           <span>Abastecimentos</span>
         </a>
-        <div id="collapseVeiculos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseAbastecimentos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="cadastrar-abastecimento.php">Criar</a>
             <a class="collapse-item" href="abastecimentos.php">Listar</a>
@@ -76,8 +76,7 @@
         </div>
       </li>
 
-
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeiculos" aria-expanded="true" aria-controls="collapseVeiculos">
           <i class="fas fa-fw fa-car"></i>
           <span>Veículos</span>
@@ -96,9 +95,15 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.php">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorios" aria-expanded="true" aria-controls="collapseRelatorios">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Relatórios</span></a>
+          <span>Relatórios</span>
+        </a>
+        <div id="collapseRelatorios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="relatorio.php">Gerar</a>
+          </div>
+        </div>
       </li>
 
       <!-- Divider -->
